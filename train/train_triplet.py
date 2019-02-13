@@ -7,11 +7,8 @@ import os.path
 import os
 import time
 import sys
-#sys.path.insert(0,'../face_reg/lib')
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,CURRENT_PATH+'/../lib')
-#sys.path.insert(0,'../face_reg/lib/loss')
-#import triplet
 sys.path.insert(0,CURRENT_PATH+'/../networks')
 import utils
 import math
@@ -27,10 +24,7 @@ from scipy import misc
 import importlib
 import itertools
 import argparse
-#import lfw
 import pdb
-#import cv2
-#import pylab as plt
 
 
 debug = False
@@ -41,7 +35,6 @@ from tensorflow.python.ops import data_flow_ops
 def _from_tensor_slices(tensors_x,tensors_y):
     #return TensorSliceDataset((tensors_x,tensors_y))
     return tf_data.Dataset.from_tensor_slices((tensors_x,tensors_y))
-
 
 
 def main(args):
@@ -145,9 +138,6 @@ def main(args):
             trip_thresh = args.num_gpus*args.people_per_batch*args.images_per_person * 10
             
 
-    
-        
-        
 
 
         #learning_rate = tf.train.exponential_decay(args.learning_rate, global_step,
@@ -157,8 +147,6 @@ def main(args):
 
         opt = utils.get_opt(args.optimizer,learning_rate)
        
-        tower_grads = []
-        #tower_losses = []
         tower_embeddings = []
         tower_feats = []
         for i in range(len(gpus)):
@@ -194,9 +182,6 @@ def main(args):
         
         # select triplet pair by tf op
         with tf.name_scope('triplet_part'):
-            #embeddings_placeholder = tf.placeholder(tf.float32)
-            #labels_placeholder = tf.placeholder(tf.int32)
-            #embeddings_norm = tf.nn.l2_normalize(embeddings_placeholder,axis=1)
             embeddings_norm = tf.nn.l2_normalize(embeddings_gather,axis=1)
             distances = utils._pairwise_distances(embeddings_norm,squared=True)
             if args.strategy == 'min_and_min':
@@ -238,18 +223,9 @@ def main(args):
         update_vars = tf.trainable_variables() 
         with tf.device("/gpu:" + str(gpus[0])):
 
-                    # Build a Graph that trains the model with one batch of examples and updates the model parameters
-                    #train_op = facenet.train(total_loss, global_step, args.optimizer, 
-                    #    learning_rate, args.moving_average_decay, tf.global_variables())
-                    #grads = opt.compute_gradients(total_loss,tf.global_variables())
-                    # we use trainable_variables, because the untrainable variable don't have gradient.
-                    #grads = opt.compute_gradients(total_loss,tf.trainable_variables(),colocate_gradients_with_ops=True)
+                
                     grads = opt.compute_gradients(total_loss,update_vars,colocate_gradients_with_ops=True)
-                    #grads = opt.compute_gradients(total_loss,tf.trainable_variables())
-                    tower_grads.append(grads)
                     
-        # Create a saver
-        #grads = facenet.sum_gradients(tower_grads) 
         apply_gradient_op = opt.apply_gradients(grads,global_step=global_step) 
         #update_ops = [op for op in tf.get_collection(tf.GraphKeys.UPDATE_OPS) if 'pair_part' in op.name] 
         update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS) 

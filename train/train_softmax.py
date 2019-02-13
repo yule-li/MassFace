@@ -9,7 +9,6 @@ import time
 import sys
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0,CURRENT_PATH+'/../lib')
-#sys.path.insert(0,'../face_reg/lib/loss')
 sys.path.insert(0,CURRENT_PATH+'/../networks')
 import tensorflow as tf
 from tensorflow.contrib import slim
@@ -26,10 +25,7 @@ import sphere_network as network
 import MobileFaceNet as mobilenet
 import inception_resnet_v1 as inception_net
 import resface as resface
-#import lfw
 import pdb
-#import cv2
-#import pylab as plt
 
 debug = False
 softmax_ind = 0
