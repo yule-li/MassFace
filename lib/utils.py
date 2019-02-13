@@ -44,6 +44,71 @@ import random
 import re
 from tensorflow.python.platform import gfile
 
+def _pairwise_distances(embeddings, squared=False):
+    """Compute the 2D matrix of distances between all the embeddings.
+
+    Args:
+        embeddings: tensor of shape (batch_size, embed_dim)
+        squared: Boolean. If true, output is the pairwise squared euclidean distance matrix.
+                 If false, output is the pairwise euclidean distance matrix.
+
+    Returns:
+        pairwise_distances: tensor of shape (batch_size, batch_size)
+    """
+    # Get the dot product between all embeddings
+    # shape (batch_size, batch_size)
+    dot_product = tf.matmul(embeddings, tf.transpose(embeddings))
+
+    # Get squared L2 norm for each embedding. We can just take the diagonal of `dot_product`.
+    # This also provides more numerical stability (the diagonal of the result will be exactly 0).
+    # shape (batch_size,)
+    square_norm = tf.diag_part(dot_product)
+
+    # Compute the pairwise distance matrix as we have:
+    # ||a - b||^2 = ||a||^2  - 2 <a, b> + ||b||^2
+    # shape (batch_size, batch_size)
+    distances = tf.expand_dims(square_norm, 0) - 2.0 * dot_product + tf.expand_dims(square_norm, 1)
+
+    # Because of computation errors, some distances might be negative so we put everything >= 0.0
+    distances = tf.maximum(distances, 0.0)
+
+    if not squared:
+        # Because the gradient of sqrt is infinite when distances == 0.0 (ex: on the diagonal)
+        # we need to add a small epsilon where distances == 0.0
+        mask = tf.to_float(tf.equal(distances, 0.0))
+        distances = distances + mask * 1e-16
+
+        distances = tf.sqrt(distances)
+
+        # Correct the epsilon added: set the distances on the mask to be exactly 0.0
+        distances = distances * (1.0 - mask)
+
+    return distances
+def triplet_loss(anchor, positive, negative, alpha):
+    """Calculate the triplet loss according to the FaceNet paper
+    
+    Args:
+      anchor: the embeddings for the anchor images.
+      positive: the embeddings for the positive images.
+      negative: the embeddings for the negative images.
+  
+    Returns:
+      the triplet loss according to the FaceNet paper as a float tensor.
+    """
+    with tf.variable_scope('triplet_loss'):
+        pos_dist = tf.reduce_sum(tf.square(tf.subtract(anchor, positive)), 1)
+        neg_dist = tf.reduce_sum(tf.square(tf.subtract(anchor, negative)), 1)
+        
+        basic_loss = tf.add(tf.subtract(pos_dist,neg_dist), alpha)
+        loss = tf.reduce_mean(tf.maximum(basic_loss, 0.0), 0)
+        pos_d = tf.reduce_mean(pos_dist,0)
+        neg_d = tf.reduce_mean(neg_dist,0)
+      
+    return loss, pos_d,neg_d
+ 
+
+
+
 def py_func(func, inp, Tout, stateful = True, name=None, grad_func=None):
     rand_name = 'PyFuncGrad' + str(np.random.randint(0,1E+8))
     tf.RegisterGradient(rand_name)(grad_func)
