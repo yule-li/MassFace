@@ -11,7 +11,11 @@ This project provide an efficient implementation for deep face recognition using
 
 **Feature Extractor**: We use MobileFacenets [1] to extract the feature of the input image as a deep representation. It only has 4.0MB parameters and can be infered very fast as well.
 
-**Triplet Selection**
+**Triplet Selection**: Triplet selection aims to choice the valid triplet (i, j, k) which is used as input of triplet loss. The valid triplet menas that i, j have the identity and i, k have different identity. We implement serveral mining strategy to select triplet pairs.
+- Batch All
+- Batch Random
+- Batch Min Min
+- Batch Min Max
 
 **Triplet Loss**
 
