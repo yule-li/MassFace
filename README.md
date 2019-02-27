@@ -19,6 +19,11 @@ This project provide an efficient implementation for deep face recognition using
 
 **Triplet Loss**
 
+**Mining methods**
+- Online
+- Offline
+- Semi-online
+
 
 ## Data preprocessing
 
