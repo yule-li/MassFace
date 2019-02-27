@@ -2,6 +2,7 @@
 
 ## Introduction
 This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain . In particular, this repository includes:
+![image](./images/framework.png)
 - Samples generation
 - Hard exmaples mining
 - Online and semi-online training
