@@ -4,7 +4,6 @@
 This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as follow figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules.
 |![image](./images/framework.png) |
 |:--:|
-| *Framework using triplet loss to train face recognition model: total P ∗ K images are sampled for P persons with K images each person. The sampled images are mapped into feature vectors through deep convolutional network. The indexs of triplet pairs are computed by a hard example mining process based on the feature vectors and the responding triplet feature pairs can be gathered. Finally, the features of triplet pairs are inputed into triplet loss to train the CNN.* |
 
 **Data Sample**: we sample total P*K images for P persons with K images each in an iteration.
 
@@ -16,7 +15,7 @@ This project provide an efficient implementation for deep face recognition using
 
 |![image](./images/framework.png) |
 |:--:|
-| *Triplet loss on two positive faces (Obama) and one negative face (Macron)* |
+| *Framework using triplet loss to train face recognition model: total P ∗ K images are sampled for P persons with K images each person. The sampled images are mapped into feature vectors through deep convolutional network. The indexs of triplet pairs are computed by a hard example mining process based on the feature vectors and the responding triplet feature pairs can be gathered. Finally, the features of triplet pairs are inputed into triplet loss to train the CNN.* |
 
 ## Data preprocessing
 
