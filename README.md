@@ -1,7 +1,7 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
 
 ## Introduction
-This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as follow figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules.
+This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules.
 
 |![image](./images/framework.png) |
 |:--:|
@@ -15,9 +15,6 @@ This project provide an efficient implementation for deep face recognition using
 
 **Triplet Loss**
 
-|![image](./images/framework.png) |
-|:--:|
-| *Triplet loss on two positive faces (Obama) and one negative face (Macron)* |
 
 ## Data preprocessing
 
