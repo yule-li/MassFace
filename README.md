@@ -14,7 +14,7 @@ This project provide an efficient implementation for deep face recognition using
 
 **Triplet Loss**
 
-|![triplet-loss-img] |
+|![image](./images/framework.png) |
 |:--:|
 | *Triplet loss on two positive faces (Obama) and one negative face (Macron)* |
 
