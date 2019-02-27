@@ -19,7 +19,7 @@ This project provide an efficient implementation for deep face recognition using
 
 **Triplet Loss**
 
-**Mining methods**
+**Mining methods**: Mining methods. The triplet selection is based on a pool of the feature vectors. There are serveral methods to obtain the pool of feature vectors with size B
 - Online
 - Offline
 - Semi-online
