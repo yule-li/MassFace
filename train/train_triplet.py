@@ -62,8 +62,8 @@ def main(args):
         '''We sample people based on tf.data, where we can use transform and prefetch.
 
         '''
-    
-        image_paths, num_per_class = sample_people(train_set,args.people_per_batch*args.num_gpus*args.scale,args.images_per_person)
+        scale = 1 if args.mine_method != 'simi_online' else args.scale 
+        image_paths, num_per_class = sample_people(train_set,args.people_per_batch*args.num_gpus*scale,args.images_per_person)
         labels = []
         for i in range(len(num_per_class)):
             labels.extend([i]*num_per_class[i])
@@ -276,6 +276,7 @@ def main(args):
 
             # Training and validation loop
             epoch = 0
+            pdb.set_trace()
             while epoch < args.max_nrof_epochs:
                 step = sess.run(global_step, feed_dict=None)
                 epoch = step // args.epoch_size
