@@ -1,4 +1,4 @@
-MODEL_DIR=/workspace/saved/triplet/models/mobilenet_webface_min_and_max_online__41_5_more/20190117-144647/model-20190117-144647.ckpt-600000
+MODEL_DIR=models/model-20190214-150620.ckpt-600000
 TEST_DATA=dataset/lfw_112x112
 EMBEDDING_SIZE=1024  
 FC_BN='--fc_bn'
