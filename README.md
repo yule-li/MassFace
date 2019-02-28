@@ -1,6 +1,6 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
 ## Features
-- This implementation support multi-gpus.
+- This implementation supports multi-gpus.
 - The Data Sample is implemented by ```tf.data```, which can load images fast in format of ```jpg, png```.
 - The Triplet Selection is implemented by ```tf.py_func``` and it's flexible to modify as you need.
 - It's fast to train and the average time of one iteration with multi-gpus (210*4 images) is just about ```0.6s``` in ```V100```.
