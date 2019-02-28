@@ -25,6 +25,9 @@ This project provide an efficient implementation for deep face recognition using
 - Offline
 - Semi-online
 
+## Installation
+- Install tensorflow 1.8: ```pip install tensorflow==1.8.0```
+- Get code of this respository: ```git clone https://github.com/yule-li/MassFace.git```
 
 ## Data preprocessing
 
