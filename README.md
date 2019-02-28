@@ -18,7 +18,7 @@ This project provide an efficient implementation for deep face recognition using
 - Batch Min Max
 - Batch Hardest
 
-**Triplet Loss**
+**Triplet Loss**: $\alpha$
 
 **Mining methods**:The triplet selection is based on a pool of the feature vectors. There are serveral methods to obtain the pool of feature vectors with size B
 - Online
