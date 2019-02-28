@@ -42,3 +42,5 @@ TODO
 
 ## Reference
 1. [MoibleFaces](https://arxiv.org/pdf/1804.07573)
+2. [MobileFaceNet_TF](https://github.com/sirius-ai/MobileFaceNet_TF)
+3. [CosFace](https://github.com/yule-li/CosFace)
