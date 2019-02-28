@@ -38,7 +38,8 @@ This project provide an efficient implementation for deep face recognition using
 - Pretrain with softmax loss: run ```./train_softmax.sh``` with argument ```NETWORK=mobilenet```
 - Train with triplet loss: run ```./train_triplet.sh```
 ## Test
-TODO
+- Modify ```MODEL_DIR``` in ```test.sh``` to your trained model
+- ```./test.sh```
 
 ## Reference
 1. [MoibleFaces](https://arxiv.org/pdf/1804.07573)
