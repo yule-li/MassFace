@@ -1,4 +1,3 @@
-#NETWORK="resnet_v2"
 NETWORK='mobilenet'
 DATASET='webface'
 #STRATEGY='min_and_min'
@@ -32,9 +31,5 @@ K=5
 #K=7
 NAME=${NETWORK}_${DATASET}_${STRATEGY}_${MINE_METHOD}__${P}_${K}_more
 SAVE_DIR=/workspace/saved/triplet
-#CMD="\" bash -c 'CUDA_VISIBLE_DEVICES=0 python /workspace/project/TripletFace/train.py --logs_base_dir ${SAVE_DIR}logs/${NAME}/ --models_base_dir ${SAVE_DIR}/models/${NAME}/  --image_size 224  --optimizer ADAGRAD --learning_rate 0.001 --weight_decay 1e-4 --max_nrof_epochs 10000  --network ${NETWORK} --dataset ${DATASET} --data_dir ${DATA_DIR} --pretrained_model ${PRETRAINED_MODEL} --random_crop --random_flip --image_size 112 --strategy ${STRATEGY} --mine_method ${MINE_METHOD} --num_gpus 1 --embedding_size 1024 --scale 10 --people_per_batch ${P} --images_per_person ${K}'\""
-CMD="\" bash -c 'python /workspace/project/MassFace/train/train_triplet.py --logs_base_dir ${SAVE_DIR}logs/${NAME}/ --models_base_dir ${SAVE_DIR}/models/${NAME}/  --image_size 224  --optimizer ADAGRAD --learning_rate 0.001 --weight_decay 1e-4 --max_nrof_epochs 10000  --network ${NETWORK} --dataset ${DATASET} --data_dir ${DATA_DIR} --pretrained_model ${PRETRAINED_MODEL} --random_crop --random_flip --image_size 112 --strategy ${STRATEGY} --mine_method ${MINE_METHOD} --num_gpus 1 --embedding_size 1024 --scale 10 --people_per_batch ${P} --images_per_person ${K}'\""
 LOCAL_CMD="python /workspace/project/MassFace/train/train_triplet.py --logs_base_dir ${SAVE_DIR}logs/${NAME}/ --models_base_dir ${SAVE_DIR}/models/${NAME}/  --image_size 224  --optimizer ADAGRAD --learning_rate 0.001 --weight_decay 1e-4 --max_nrof_epochs 10000  --network ${NETWORK} --dataset ${DATASET} --data_dir ${DATA_DIR} --pretrained_model ${PRETRAINED_MODEL} --random_crop --random_flip --image_size 112 --strategy ${STRATEGY} --mine_method ${MINE_METHOD} --num_gpus 1 --embedding_size 1024 --scale 10 --people_per_batch ${P} --images_per_person ${K}"
 echo ${LOCAL_CMD} && eval ${LOCAL_CMD}
-cmd="axer create --name='test_lip_cos' --cmd=${CMD} --gpu_count='1' --image='CV-Caffe_TF1.8-Py3' --prior_gpu_kind='V100' --project_id 332"
-#echo ${cmd}  && eval ${cmd}
