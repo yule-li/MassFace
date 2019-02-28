@@ -18,8 +18,7 @@ This project provide an efficient implementation for deep face recognition using
 - Batch Min Max
 - Batch Hardest
 
-**Triplet Loss**: ![L=max(0,\|f^a_i(x) -f^p_i(x)\|^2_2 + \alpha - \|f^a_i(x) -f^n_i(x)\|^2_2)](https://latex.codecogs.com/svg.latex?x%3D%5Cfrac%7B-b%5Cpm%5Csqrt%7Bb%5E2-4ac%7D%7D%7B2a%7D)
-<img src="https://latex.codecogs.com/gif.latex?L=max(0,\|f^a_i(x)&space;-f^p_i(x)\|^2_2&space;&plus;&space;\alpha&space;-&space;\|f^a_i(x)&space;-f^n_i(x)\|^2_2)" title="L=max(0,\|f^a_i(x) -f^p_i(x)\|^2_2 + \alpha - \|f^a_i(x) -f^n_i(x)\|^2_2)" />
+**Triplet Loss**: <img src="https://latex.codecogs.com/gif.latex?L=max(0,\|f^a_i(x)&space;-f^p_i(x)\|^2_2&space;&plus;&space;\alpha&space;-&space;\|f^a_i(x)&space;-f^n_i(x)\|^2_2)" title="L=max(0,\|f^a_i(x) -f^p_i(x)\|^2_2 + \alpha - \|f^a_i(x) -f^n_i(x)\|^2_2)" />
 
 
 **Mining methods**:The triplet selection is based on a pool of the feature vectors. There are serveral methods to obtain the pool of feature vectors with size B
