@@ -1,7 +1,7 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
 
 ## Introduction
-This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules. The details can be seen as our technical report [**MassFace: an effecient implementation using triplet loss for face recognition**]()
+This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules. The details can be seen as our technical report: [**MassFace: an effecient implementation using triplet loss for face recognition**]()
 
 |![image](./images/framework.png) |
 |:--:|
@@ -21,7 +21,7 @@ This project provide an efficient implementation for deep face recognition using
 **Triplet Loss**: <img src="https://latex.codecogs.com/gif.latex?L=max(0,\|f^a_i(x)&space;-f^p_i(x)\|^2_2&space;&plus;&space;\alpha&space;-&space;\|f^a_i(x)&space;-f^n_i(x)\|^2_2)" title="L=max(0,\|f^a_i(x) -f^p_i(x)\|^2_2 + \alpha - \|f^a_i(x) -f^n_i(x)\|^2_2)" />
 
 
-**Mining methods**:The triplet selection is based on a pool of the feature vectors. There are serveral methods to obtain the pool of feature vectors with size B
+**Mining methods**:The triplet selection is based on a pool of the feature vectors. There are serveral methods to obtain the pool of feature vectors with size B.
 - Online
 - Offline
 - Semi-online
