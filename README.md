@@ -7,7 +7,7 @@ This project provide an efficient implementation for deep face recognition using
 |:--:|
 | *Framework using triplet loss to train face recognition model: total P ∗ K images are sampled for P persons with K images each person. The sampled images are mapped into feature vectors through deep convolutional network. The indexs of triplet pairs are computed by a hard example mining process based on the feature vectors and the responding triplet feature pairs can be gathered. Finally, the features of triplet pairs are inputed into triplet loss to train the CNN.* |
 
-**Data Sample**: we sample total P*K images for P persons with K images each in an iteration.
+**Data Sample**: we sample total P*K images for P persons with K images each in an iteration. We implement it by tensorflow ```tf.data``` api.
 
 **Feature Extractor**: We use MobileFacenets [1] to extract the feature of the input image as a deep representation. It only has about 6.0MB parameters and can be infered very fast as well.
 
