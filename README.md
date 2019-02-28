@@ -1,5 +1,7 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
-
+## Features
+- This implementation support multi-gpus.
+- The Data Sample is implemented by ```tf.data```, which can load images fast in format of ```jpg, png```.
 ## Introduction
 This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and [98.6%](models/model-20190214-150620.ckpt-600000) with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules. The details can be seen as our technical report: [**MassFace: an effecient implementation using triplet loss for face recognition**]()
 
