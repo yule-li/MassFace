@@ -16,6 +16,7 @@ This project provide an efficient implementation for deep face recognition using
 - Batch Random
 - Batch Min Min
 - Batch Min Max
+- Batch Hardest
 
 **Triplet Loss**
 
