@@ -1,15 +1,20 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
-
+## Features
+- This implementation supports multi-gpus.
+- The Data Sample is implemented by ```tf.data```, which can load images fast in format of ```jpg, png```.
+- The Triplet Selection is implemented by ```tf.py_func``` and it's flexible to modify as you need.
+- It's fast to train and the average time of one iteration with multi-gpus (210*4 images) is just about ```0.6s``` in ```V100```.
+- It achieves 98.3% accurace on LFW with softmax pretrain(97.1%).
 ## Introduction
-This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and 98.6% with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules. The details can be seen as our technical report: [**MassFace: an effecient implementation using triplet loss for face recognition**]()
+This project provide an efficient implementation for deep face recognition using Triplet Loss. When trained on [CASIA-Webface](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) and tested on on [LFW](http://vis-www.cs.umass.edu/lfw/),this code can achieve an 98.3% accuracy with softmax pretrain and [98.6%](models/model-20190214-150620.ckpt-600000) with CosFace pretrain. The framework using triplet loss can be seen as the following figure. It contrains Data Sample, Feature Extractor, Triplet Selection and Triplet Loss modules. The details can be seen as our technical report: [**MassFace: an effecient implementation using triplet loss for face recognition**](https://arxiv.org/abs/1902.11007)
 
 |![image](./images/framework.png) |
 |:--:|
 | *Framework using triplet loss to train face recognition model: total P ∗ K images are sampled for P persons with K images each person. The sampled images are mapped into feature vectors through deep convolutional network. The indexs of triplet pairs are computed by a hard example mining process based on the feature vectors and the responding triplet feature pairs can be gathered. Finally, the features of triplet pairs are inputed into triplet loss to train the CNN.* |
 
-**Data Sample**: we sample total P*K images for P persons with K images each in an iteration.
+**Data Sample**: we sample total P*K images for P persons with K images each in an iteration. We implement it by tensorflow ```tf.data``` api.
 
-**Feature Extractor**: We use MobileFacenets [1] to extract the feature of the input image as a deep representation. It only has 4.0MB parameters and can be infered very fast as well.
+**Feature Extractor**: We use MobileFacenets [1] to extract the feature of the input image as a deep representation. It only has about 6.0MB parameters and can be infered very fast as well.
 
 **Triplet Selection**: Triplet selection aims to choice the valid triplet (i, j, k) which is used as input of triplet loss. The valid triplet menas that i, j have the identity and i, k have different identity. We implement serveral mining strategy to select triplet pairs.
 - Batch All
@@ -37,7 +42,7 @@ This project provide an efficient implementation for deep face recognition using
 
 ## Train
 - Pretrain with softmax loss: run ```./train_softmax.sh``` with argument ```NETWORK=mobilenet```
-- Train with triplet loss: run ```./train_triplet.sh```
+- Train with triplet loss: modify the ```PRETRAINED_MODEL``` to your pretrained model with softmax loss and run ```./train_triplet.sh```
 ## Test
 - Modify ```MODEL_DIR``` in ```test.sh``` to your trained model
 - ```./test.sh```
