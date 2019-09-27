@@ -104,7 +104,7 @@ def main(args):
         
         if args.random_crop:
             print('use random crop')
-            image = tf.random_crop(image, [args.image_size, args.image_size, 3])
+            image = tf.random_crop(image, [args.image_height, args.image_width, 3])
         else:
             print('Not use random crop')
             #image.set_shape((args.image_size, args.image_size, 3))
@@ -406,7 +406,7 @@ def parse_arguments(argv):
     parser.add_argument('--num_gpus', type=int,
         help='Number of gpus.', default=4)
     parser.add_argument('--images_per_person', type=int,
-        help='Number of images per person.', default=6)
+        help='Number of images per person.', default=4)
     parser.add_argument('--epoch_size', type=int,
         help='Number of batches per epoch.', default=600)
     parser.add_argument('--alpha', type=float,

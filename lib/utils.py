@@ -487,7 +487,7 @@ def load_data(image_paths, do_random_crop, do_flip, image_height,image_width, do
             img = img - 127.5
             img = img / 128.
 
-        #img = crop(img, do_random_crop, image_size)
+        img = crop(img, do_random_crop, image_width)
         #img = flip(img, do_random_flip)
         if do_flip:
             img = np.fliplr(img)
@@ -630,6 +630,7 @@ def get_dataset(paths, has_class_directories=True):
     for path in paths.split(':'):
         path_exp = os.path.expanduser(path)
         classes = os.listdir(path_exp)
+        classes = [c for c in classes if os.path.isdir(os.path.join(path_exp,c))]
         classes.sort()
         nrof_classes = len(classes)
         for i in range(nrof_classes):

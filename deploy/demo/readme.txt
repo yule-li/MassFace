@@ -1,0 +1,2 @@
+run:
+    - ```bash demo.sh```
