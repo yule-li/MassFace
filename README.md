@@ -1,4 +1,11 @@
 # MassFace: an effecient implementation using triplet loss for face recognition.
+## Recent Update
+
+### 2019.09.27
+- Impoving triplet sample strategy: Assume identities list as ```class_indices```
+    - We iterate all person identities ```class_indices``` in an epoch. Then for each identity in a batch, we randomly sample its coresponding  ```K``` images.
+    - At the beginning of the epoch, we shuffle ```class_indices```.
+- Triplet loss can be optimized togother with softmax loss: run ```bash train_triplet_with_softmax.sh```
 ## Features
 - This implementation supports multi-gpus.
 - The Data Sample is implemented by ```tf.data```, which can load images fast in format of ```jpg, png```.
